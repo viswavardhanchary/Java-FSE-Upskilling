@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.highlight {
+			background-color: yellow;
+			color: black;
+			padding: 0 4px;
+			border-radius: 2px;
+			text-align: center;
+		}
+
+		.imageFormat {
+			border: 1px solid gray;
+			width: 200px;
+			height: 200px;
+		}
+
+		.tableFormater td,
+		th {
+			border: 1px solid gray;
+			border-radius: 3px;
+			padding: 8px;
+		}
+
+		#events {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+
+		.tableRowFormater {
+			border: 1px solid gray;
+			padding: 3px;
+		}
+
+		.headerNav {
+			background-color: black;
+			padding: 5px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 1rem;
+		}
+
+		.headerNav a {
+			color: white;
+			text-decoration: none;
+
+		}
+
+		.headerNav a:hover {
+			text-decoration: underline;
+		}
+
+		#welcomeBanner {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 10px;
+			flex-direction: column;
+		}
+
+		.formFormater {
+			display: flex;
+			gap: 8px;
+			flex-direction: column;
+			width: 100%;
+		}
+
+		.formFormater input,
+		textarea,
+		select {
+			padding: 3px;
+			font-size: 16px;
+			border: 1px solid orange;
+		}
+
+		#register,
+		#feedback {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			/* width: 100%; */
+			padding: 15px;
+		}
+
+		.submitFormater {
+			background-color: green;
+
+		}
+
+		.submitFormater:hover {
+			background-color: rgb(58, 161, 58);
+			cursor: pointer;
+		}
+
+		footer {
+			background-color: rgb(235, 201, 52);
+			padding: 5px;
+			text-align: center;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+
+<body style="font-family:Verdana, Geneva, Tahoma, sans-serif;">
+	<!-- Header Section with Navigation -->
+	<header>
+		<nav class="headerNav">
+			<a href="#">Home</a>
+			<a href="#events">Events</a>
+			<a href="contact.html">Contact</a>
+		</nav>
+	</header>
+
+	<!-- Main Section (Body of the Page) -->
+	<main>
+		<section id="BannerSection">
+			<div id="welcomeBanner" style="background-color: rgb(30, 71, 126);color: white; padding: 8px;">
+				<h1 class="highlight">Welcome to Local Community Event Portal</h1>
+				<i><a href="#register"
+						style="font-size: 16px;padding: 3px; border-radius: 5px;font-weight: bold; color: red">Register</a></i>
+				<i><a href="#location"
+						style="font-size: 16px;padding: 3px; border-radius: 5px;font-weight: bold; color: rgb(14, 211, 14)">Check
+						Locations</a></i>
+				<span>And</span>
+				<i><a href="#all"
+						style="font-size: 16px;padding: 3px; border-radius: 5px;font-weight: bold;color: red">Access all
+						Services</a></i>
+			</div>
+		</section>
+
+		<section id="events">
+			<header>
+				<b><u>
+						<h1>Events</h1>
+					</u></b>
+			</header>
+			<table class="tableFormater">
+				<thead>
+					<tr class="tableRowFormater">
+						<th>Title</th>
+						<th>Image</th>
+						<th>Caption</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="tableRowFormater">
+						<td>Alumni Connection 2026</td>
+						<td><img src="./images/alumni.jpg" alt="Alumni Connection College Image" class="imageFormat" />
+						</td>
+						<td>Come and Take a part in the Alumni Connection 2026 on 5/12/2026</td>
+					</tr>
+					<tr class="tableRowFormater">
+						<td>Teachers Day Celebration 2026</td>
+						<td><img src="./images/teachers.jpg" alt="Teachers Day Celeb Image" class="imageFormat" />
+						</td>
+						<td>Come and Take a part in the Teachers Day Celebration 2026 on 5/9/2026</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+		<section id="register">
+			<header>
+				<b><u>
+						<h1>Register to Event</h1>
+					</u></b>
+			</header>
+			<form class="formFormater" id="formFormater">
+				<label for="username">Enter Name: </label>
+				<input type="text" id="username" name="name" placeholder="Enter Your Name" required autofocus />
+				<label for="userEmail">Enter Email: </label>
+				<input type="text" id="useremail" name="email" placeholder="Enter Email (e.g abc@gmail.com)" required />
+				<label for="userdate">Select Date: </label>
+				<input type="date" id="userdate" name="date" required />
+				<label for="userevent">Select Event: </label>
+				<select placeholder="Select Event" required>
+					<option default>Select Event</option>
+					<option>Alummni Connection</option>
+					<option>Teachers Days Celeb</option>
+				</select>
+				<label for="usermessage">Add any Message: </label>
+				<textarea id="usermessage" name="message" rows="5" cols="30"></textarea>
+				<button type="submit" class="submitFormater">Register</button>
+			</form>
+			<output id="confirmationMessage"></output>
+		</section>
+		<section id="feedback">
+			<header>
+				<b><u><h1>Event FeedBack</h1></u></b>
+			</header>
+			<form class="formFormater">
+				<label>Phone Number:</label>
+				<input type="text" id="phone" placeholder="Enter phone number" onblur="validatePhone()">
+				<p id="phoneMsg"></p>
+				<label>Select Event:</label>
+				<select id="eventSelect" onchange="showFee()">
+					<option value="">Select Event</option>
+					<option value="500">Alumni Connection</option>
+					<option value="300">Teacher Day Celeb</option>
+				</select>
+				<p id="feeDisplay"></p>
+				<label>Event Images: </label>
+				<div style="display: flex; align-items: center; justify-content: center; gap: 50%">	
+					<img id="eventImage1" src="./images/alumni.jpg" alt="Alumni Connections Image" class="imageFormat"
+					ondblclick="enlargeImage(1)">
+					<img id="eventImage2" src="./images/teachers.jpg" alt="Teachers Day Image" class="imageFormat"
+					ondblclick="enlargeImage(2)">
+				</div>
+				
+				<label>Feedback:</label>
+				<textarea id="feedbackText" rows="5" cols="40" onkeydown="countCharacters()"
+				onkeyup="countCharacters()"></textarea>
+				<p>Character Count: <span id="charCount">0</span></p>
+				<button onclick="submitFeedback()" class="submitFormater">Submit</button>
+			</form>
+		</section>
+
+
+	</main>
+
+	<!-- Footer Section / End of the Page -->
+	<footer>
+		All Rights &copy; to <b>Enjeti Viswa Vardhan Chary</b> 2026
+	</footer>
+
+
+	<script>
+		const form = document.getElementById('formFormater');
+		const output = document.getElementById('confirmationMessage');
+
+		form.addEventListener('submit', function (event) {
+			event.preventDefault();
+
+			const nameInput = document.getElementById('username').value;
+
+			output.value = `Thank you, ${nameInput}! Your form was submitted successfully.`;
+
+			form.reset();
+		});
+		function validatePhone() {
+			let phone = document.getElementById("phone").value;
+			let msg = document.getElementById("phoneMsg");
+
+			let phonePattern = /^[0-9]{10}$/;
+
+			if (phonePattern.test(phone)) {
+				msg.innerHTML = "Valid Phone Number";
+			} else {
+				msg.innerHTML = "Invalid Phone Number";
+			}
+		}
+
+		function showFee() {
+			let fee = document.getElementById("eventSelect").value;
+			let display = document.getElementById("feeDisplay");
+
+			if (fee !== "") {
+				display.innerHTML = "Event Fee: ₹" + fee;
+			} else {
+				display.innerHTML = "";
+			}
+		}
+
+		function submitFeedback() {
+			alert("Feedback Submitted Successfully!");
+		}
+
+		function enlargeImage(id) {
+			let image = document.getElementById(`eventImage${id}`);
+
+			if (image.style.width === "300px") {
+				image.style.width = "150px";
+			} else {
+				image.style.width = "300px";
+			}
+		}
+
+		function countCharacters() {
+			let text = document.getElementById("feedbackText").value;
+			document.getElementById("charCount").innerHTML = text.length;
+		}
+	</script>
+</body>
+
+</html>
