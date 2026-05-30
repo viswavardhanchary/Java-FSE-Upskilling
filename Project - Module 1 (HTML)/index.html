@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>Local Community Event Portal - Main</title>
 	<style>
 		.highlight {
 			background-color: yellow;
@@ -127,12 +127,12 @@
 				<h1 class="highlight">Welcome to Local Community Event Portal</h1>
 				<i><a href="#register"
 						style="font-size: 16px;padding: 3px; border-radius: 5px;font-weight: bold; color: red">Register</a></i>
-				<i><a href="#location"
+				<i><a href="#feedback"
 						style="font-size: 16px;padding: 3px; border-radius: 5px;font-weight: bold; color: rgb(14, 211, 14)">Check
 						Locations</a></i>
 				<span>And</span>
-				<i><a href="#all"
-						style="font-size: 16px;padding: 3px; border-radius: 5px;font-weight: bold;color: red">Access all
+				<i><a href="#feedback" style="font-size: 16px;padding: 3px; border-radius: 5px;font-weight: bold;color: red">Access
+						all
 						Services</a></i>
 			</div>
 		</section>
@@ -195,7 +195,9 @@
 		</section>
 		<section id="feedback">
 			<header>
-				<b><u><h1>Event FeedBack</h1></u></b>
+				<b><u>
+						<h1>Event FeedBack</h1>
+					</u></b>
 			</header>
 			<form class="formFormater">
 				<label>Phone Number:</label>
@@ -209,17 +211,41 @@
 				</select>
 				<p id="feeDisplay"></p>
 				<label>Event Images: </label>
-				<div style="display: flex; align-items: center; justify-content: center; gap: 50%">	
+				<div style="display: flex; align-items: center; justify-content: center; gap: 50%">
 					<img id="eventImage1" src="./images/alumni.jpg" alt="Alumni Connections Image" class="imageFormat"
-					ondblclick="enlargeImage(1)">
+						ondblclick="enlargeImage(1)">
 					<img id="eventImage2" src="./images/teachers.jpg" alt="Teachers Day Image" class="imageFormat"
-					ondblclick="enlargeImage(2)">
+						ondblclick="enlargeImage(2)">
 				</div>
-				
+
 				<label>Feedback:</label>
 				<textarea id="feedbackText" rows="5" cols="40" onkeydown="countCharacters()"
-				onkeyup="countCharacters()"></textarea>
+					onkeyup="countCharacters()"></textarea>
 				<p>Character Count: <span id="charCount">0</span></p>
+				<label>Event Promo Video:</label>
+				<video id="eventVideo" width="400" controls oncanplay="videoReady()">
+					<source src="./videos/animal.mp4" type="video/mp4">
+					Your browser does not support the video tag.
+				</video>
+				<p id="videoMsg"></p>
+
+				<label>Preferred Event:</label>
+				<select id="preferredEvent" onchange="savePreference()">
+					<option value="">Select Event</option>
+					<option value="Alumni Connection">Alumni Connection</option>
+					<option value="Teacher Day Celeb">Teacher Day Celeb</option>
+				</select>
+
+				<button type="button" onclick="clearPreferences()">
+					Clear Preferences
+				</button>
+
+				<button type="button" onclick="findNearbyEvents()">
+					Find Nearby Events
+				</button>
+
+				<p id="locationResult"></p>
+
 				<button onclick="submitFeedback()" class="submitFormater">Submit</button>
 			</form>
 		</section>
@@ -287,6 +313,88 @@
 		function countCharacters() {
 			let text = document.getElementById("feedbackText").value;
 			document.getElementById("charCount").innerHTML = text.length;
+		}
+		function videoReady() {
+			document.getElementById("videoMsg").innerHTML =
+				"Video ready to play";
+		}
+
+		window.onbeforeunload = function () {
+			return "Are you sure you want to leave this page?";
+		};
+
+		function savePreference() {
+			let eventName =
+				document.getElementById("preferredEvent").value;
+
+			localStorage.setItem(
+				"preferredEvent",
+				eventName
+			);
+
+			sessionStorage.setItem(
+				"lastSelectedEvent",
+				eventName
+			);
+		}
+
+		window.addEventListener("load", function () {
+			let savedEvent =
+				localStorage.getItem("preferredEvent");
+
+			if (savedEvent) {
+				document.getElementById("preferredEvent").value =
+					savedEvent;
+			}
+		});
+
+		function clearPreferences() {
+			localStorage.clear();
+			sessionStorage.clear();
+
+			document.getElementById("preferredEvent").value = "";
+
+			alert("Preferences Cleared");
+		}
+
+		function findNearbyEvents() {
+			let result =
+				document.getElementById("locationResult");
+
+			if (!navigator.geolocation) {
+				result.innerHTML =
+					"Geolocation is not supported";
+				return;
+			}
+
+			navigator.geolocation.getCurrentPosition(
+				function (position) {
+					result.innerHTML =
+						"Latitude: " +
+						position.coords.latitude +
+						"<br>Longitude: " +
+						position.coords.longitude;
+				},
+				function (error) {
+					if (error.code === 1) {
+						result.innerHTML =
+							"Location permission denied";
+					}
+					else if (error.code === 2) {
+						result.innerHTML =
+							"Location unavailable";
+					}
+					else if (error.code === 3) {
+						result.innerHTML =
+							"Request timed out";
+					}
+				},
+				{
+					enableHighAccuracy: true,
+					timeout: 10000,
+					maximumAge: 0
+				}
+			);
 		}
 	</script>
 </body>
