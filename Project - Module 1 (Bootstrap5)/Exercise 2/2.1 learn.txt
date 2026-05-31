@@ -1,0 +1,10 @@
+1. CSS Folder
+This folder contains the Cascading Style Sheets necessary for Bootstrap's layout and design.
+Purpose: It provides the pre-defined classes for the grid system, typography, buttons, forms, and other UI components.
+
+2. JS Folder
+This folder contains the JavaScript files that power Bootstrap’s interactive components.
+Purpose: It handles the logic for dynamic elements like modals, dropdown menus, tooltips, and carousels.
+
+3. Icons Folder
+While not always included in the core framework download, this folder contains the library's official SVG icon set.
