@@ -1,0 +1,263 @@
+/* global styles */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* body styles */
+
+body {
+	font-family: 'Poppins', sans-serif;
+	background:
+		linear-gradient(
+			rgba(255,255,255,0.95),
+			rgba(255,255,255,0.95)
+		),
+		url("./images/alumni.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #333333;
+	line-height: 1.6;
+}
+
+/* navigation */
+
+.headerNav {
+	list-style-type: none;
+	list-style-position: inside;
+	background-color: #0D47A1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 25px;
+	padding: 15px;
+}
+
+.headerNav li {
+	padding: 5px;
+	margin: 3px;
+}
+
+
+.headerNav a:link {
+	color: white;
+	text-decoration: none;
+}
+
+.headerNav a:visited {
+	color: #E1BEE7;
+}
+
+.headerNav a:hover {
+	color: #FFEB3B;
+	text-decoration: underline;
+}
+
+.headerNav a:active {
+	color: red;
+}
+
+/* main header */
+
+#mainHeader {
+	background:
+		linear-gradient(
+			135deg,
+			#1565C0,
+			#42A5F5
+		);
+
+	color: white;
+	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
+/* highlighting text */
+
+.highlight {
+	background-color: yellow;
+	color: black;
+	padding: 4px 10px;
+	border-radius: 4px;
+}
+
+
+h2 {
+	text-align: center;
+	color: #1565C0;
+	margin-bottom: 20px;
+	font-size: 2rem;
+}
+
+
+h3,
+p {
+	text-align: center;
+	letter-spacing: 1px;
+}
+
+/*event section */
+
+#events {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 20px;
+}
+
+/* event card styles  */
+
+.eventCard {
+	border: 2px solid #1976D2;
+	padding: 10px;
+	margin: 10px;
+	background-color: rgba(255,255,255,0.95);
+}
+
+/* table styles */
+
+.tableFormater {
+	width: 90%;	border-collapse: collapse;
+
+	text-align: center;
+}
+
+.tableFormater th {
+	background-color: #1565C0;
+	color: white;
+	padding: 10px;
+}
+
+.tableFormater td {
+	padding: 10px;
+}
+
+.tableFormater th,
+.tableFormater td {
+	border: 1px solid #ccc;
+}
+
+.tableFormater tbody tr:nth-child(even) {
+	background-color: #c0c0c0;
+}
+
+/* images */
+
+.imageFormat {
+	border: 2px solid #1565C0;
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+	border-radius: 8px;
+}
+
+/* forms */
+
+#register,
+#feedback {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 20px;
+}
+
+.formFormater {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 90%;
+	max-width: 700px;
+}
+
+.formFormater input,
+.formFormater textarea,
+.formFormater select {
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #1976D2;
+}
+
+
+.formFormater input:focus,
+.formFormater textarea:focus,
+.formFormater select:focus {
+	outline: 3px solid orange;
+}
+
+/* Buttons */
+
+.submitFormater {
+	background-color: #2E7D32;
+	color: white;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.submitFormater:hover {
+	background-color: #43A047;
+}
+
+/* Community Bulletin */
+
+#news {
+	padding: 30px;
+}
+
+.newsArticle {
+	column-count: 3;
+	column-gap: 30px;
+	column-rule: 1px solid gray;
+	text-align: justify;
+	line-height: 1.8;
+}
+
+/* footer */
+
+footer {
+	background-color: #1565C0;
+	color: white;
+	text-align: center;
+	padding: 15px;
+	margin-top: 20px;
+}
+
+/* Responsive Design */
+
+@media screen and (max-width: 768px) {
+
+	.headerNav {
+		flex-direction: column;
+	}
+
+	h2 {
+		font-size: 1.5rem;
+	}
+
+	.imageFormat {
+		width: 120px;
+		height: 120px;
+	}
+
+	.newsArticle {
+		column-count: 1;
+	}
+
+	.formFormater {
+		width: 100%;
+	}
+
+	video {
+		width: 100%;
+		height: auto;
+	}
+}
