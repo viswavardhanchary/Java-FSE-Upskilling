@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 11 - Working with Forms</title>
+</head>
+<body>
+
+    <h1>Event Registration Form</h1>
+
+    <form id="registrationForm">
+
+        <label>Name:</label>
+        <input type="text" name="name">
+        <span id="nameError"></span>
+
+        <br><br>
+
+        <label>Email:</label>
+        <input type="email" name="email">
+        <span id="emailError"></span>
+
+        <br><br>
+
+        <label>Select Event:</label>
+        <select name="event">
+            <option value="">Choose Event</option>
+            <option value="Music Night">Music Night</option>
+            <option value="Coding Workshop">Coding Workshop</option>
+        </select>
+        <span id="eventError"></span>
+
+        <br><br>
+
+        <button type="submit">
+            Register
+        </button>
+
+    </form>
+
+    <p id="successMessage"></p>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
